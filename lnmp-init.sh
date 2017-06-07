@@ -18,8 +18,6 @@ yum -y update
 ## 安装依赖
 echo "LOC-lnmp: 正在安装依赖包... "
 yum install -y wget epel-release
-yum clean all
-
 
 ## 关闭selinux
 sed -i 's/SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config
@@ -32,4 +30,5 @@ echo "[8]调整文件描述符数量"
 
 sleep 2
 
-setenforece 0
+setenforce 0
+getenforce
