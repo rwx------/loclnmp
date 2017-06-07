@@ -31,4 +31,7 @@ echo "[8]调整文件描述符数量"
 sleep 2
 
 setenforce 0
-getenforce
+
+wget -q https://github.com/rwx------/loclnmp/archive/v0.0.1.tar.gz
+tar xzf v0.0.1.tar.gz -C /tmp/
+
