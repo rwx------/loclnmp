@@ -31,3 +31,5 @@ echo "* hard nofile 65536" >> /etc/security/limits.conf
 echo "[8]调整文件描述符数量"
 
 sleep 2
+
+setenforece 0
