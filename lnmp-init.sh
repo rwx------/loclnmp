@@ -38,5 +38,8 @@ wget -q https://lnmp.liaoyongfu.com/loclnmp.latest.tar.gz
 if [ -e /tmp/loclnmp ] ; then 
     rm -rf /tmp/loclnmp
 fi
+
 tar xzf loclnmp.latest.tar.gz -C /tmp/
 
+chmod +x /tmp/loclnmp/bin/*
+/tmp/loclnmp/bin/install-nginx.sh
