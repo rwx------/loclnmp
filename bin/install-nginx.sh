@@ -1,40 +1,24 @@
 #!/bin/bash
 
-# 目录规范
-locDir=/opt/locLNMP
-locSrc=$locDir/src
-locBuild=$locDir/build
-locConf=$locDir/conf
+. $(dirname $(readlink -f $0))/config.sh
 
-pkg_version=1.12.0
 pkg_name=nginx
-
-mkdir -m 777 -p $locDir $locSrc $locBuild $locConf
 
 # 依赖包的安装
 yum install  -y  gcc gcc-c++ pcre pcre-devel zlib zlib-devel
 
 ## 添加用户
-echo "LOC-start: 添加用户"
+echo "loc-lnmp: 添加用户"
 if ! id www &>/dev/null ; then
   groupadd -g 1000 www
   useradd -g 1000 -u 1000 -s /sbin/nologin www
 fi
 
-# nginx 下载
-cd $locSrc
-if [ ! -f ${pkg_name}-${pkg_version}.tar.gz ]; then
-    wget http://nginx.org/download/${pkg_name}-${pkg_version}.tar.gz
-fi
-
-# 编译安装
-if [ -d "$locBuild/${pkg_name}-${pkg_version}" ]; then
-    rm -rf "$locBuild/${pkg_name}-${pkg_version}"
-fi
-tar -xzf ${pkg_name}-${pkg_version}.tar.gz -C $locBuild
-cd $locBuild/${pkg_name}-${pkg_version}
-./configure  --prefix=/usr/local/nginx
-make
+## 编译安装
+echo 'loc-lnmp: 编译安装'
+cd $locSrc/${pkg_name}-${ngx_version}
+./configure  --prefix=/usr/local/nginx --with-http_stub_status_module --with-ld-opt=-ljemalloc --with-http_v2_module --with-openssl=$locSrc/openssl-1.0.2k --with-http_ssl_module
+make -j4
 make install
 
 # 配置
@@ -52,4 +36,4 @@ systemctl start nginx
 systemctl enable nginx
 
 ## firewalld配置
-systemctl stop firewalld
+#systemctl stop firewalld

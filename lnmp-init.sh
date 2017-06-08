@@ -32,14 +32,14 @@ sleep 2
 
 setenforce 0
 
+if [ -e /tmp/loclnmp ] ; then
+    rm -rf /tmp/loclnmp
+    rm -f loclnmp.latest.tar.gz
+fi
 
 wget -q http://lnmp.liaoyongfu.com/loclnmp.latest.tar.gz
 
-if [ -e /tmp/loclnmp ] ; then 
-    rm -rf /tmp/loclnmp
-fi
-
-tar xzf loclnmp.latest.tar.gz -C /tmp/
+tar -xzf loclnmp.latest.tar.gz -C /tmp/
 
 chmod +x /tmp/loclnmp/bin/*
 /tmp/loclnmp/bin/install-nginx.sh
