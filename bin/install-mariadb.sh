@@ -10,9 +10,9 @@ yum -y install libev perl-DBD-MySQL percona-xtrabackup redhat-lsb-core
 
 Mem1=$(free -g |grep Mem |awk '{print $2}')
 MyConf=$locConf/my.cnf-2G
-if [ $Mem2 -ge 7 ] && [ $Mem2 -lt 16 ]; then
+if [ $Mem1 -ge 7 ] && [ $Mem1 -lt 16 ]; then
     MyConf=$locConf/my.cnf-6G
-elif [ $Mem2 -ge 16 ]; then
+elif [ $Mem1 -ge 16 ]; then
     MyConf=$locConf/my.cnf-12G
 fi
 /usr/bin/cp -f $MyConf /etc/my.cnf

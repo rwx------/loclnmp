@@ -51,3 +51,6 @@ echo '开始安装nginx ...'
 
 echo '开始安装php56 ...'
 /tmp/loclnmp/bin/install-php56.sh
+
+echo '开始安装mariad-10.1.24 ...'
+/tmp/loclnmp/bin/install-mariadb.sh
