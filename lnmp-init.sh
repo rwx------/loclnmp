@@ -32,6 +32,11 @@ sleep 2
 
 setenforce 0
 
-wget -q https://github.com/rwx------/loclnmp/archive/v0.0.1.tar.gz
-tar xzf v0.0.1.tar.gz -C /tmp/
+
+wget -q https://lnmp.liaoyongfu.com/loclnmp.latest.tar.gz
+
+if [ -e /tmp/loclnmp ] ; then 
+    rm -rf /tmp/loclnmp
+fi
+tar xzf loclnmp.latest.tar.gz -C /tmp/
 
