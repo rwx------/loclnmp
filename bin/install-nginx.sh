@@ -5,7 +5,7 @@
 pkg_name=nginx
 
 # 依赖包的安装
-yum install  -y  gcc gcc-c++ pcre pcre-devel zlib zlib-devel
+yum install  -y gcc gcc-c++ pcre pcre-devel zlib zlib-devel jemalloc jemalloc-devel perl
 
 ## 添加用户
 echo "loc-lnmp: 添加用户"
@@ -17,8 +17,8 @@ fi
 ## 编译安装
 echo 'loc-lnmp: 编译安装'
 cd $locSrc/${pkg_name}-${ngx_version}
-./configure  --prefix=/usr/local/nginx --with-http_stub_status_module --with-ld-opt=-ljemalloc --with-http_v2_module --with-openssl=$locSrc/openssl-1.0.2k --with-http_ssl_module
-make -j4
+./configure  --prefix=/usr/local/nginx --with-http_stub_status_module --with-ld-opt=-ljemalloc --with-http_v2_module --with-openssl=$locSrc/openssl-1.0.2k --with-http_ssl_module >$locLogs/nginx-configure.log
+make -j 2 >$locLogs/nginx-make.log
 make install
 
 # 配置
@@ -36,4 +36,8 @@ systemctl start nginx
 systemctl enable nginx
 
 ## firewalld配置
-#systemctl stop firewalld
+fwStat=$(firewall-cmd --stat)
+if [ "x$fwStat" == "xrunning" ]; then
+    firewall-cmd --zone=public --add-port=80/tcp
+    firewall-cmd --zone=public --add-port=443/tcp
+fi

@@ -1,0 +1,14 @@
+[Unit]
+Description=php7-fpm
+After=network.target
+
+[Service]
+Type=forking
+User=www
+ExecStart="/usr/local/php7/sbin/php-fpm"
+ExecStop="/bin/pkill php-fpm"
+PrivateTmp=true
+LimitNOFILE=65535
+
+[Install]
+WantedBy=multi-user.target

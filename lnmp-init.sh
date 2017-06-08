@@ -34,11 +34,12 @@ setenforce 0
 
 if [ -e /tmp/loclnmp ] ; then
     rm -rf /tmp/loclnmp
-    rm -f loclnmp.latest.tar.gz
+    rm -f /tmp/loclnmp.latest.tar.gz
 fi
 
 echo '[9]开始下载:  loclnmp.latest.tar.gz .... '
-wget -q http://lnmp.liaoyongfu.com/loclnmp.latest.tar.gz
+echo wget -q http://lnmp.liaoyongfu.com/loclnmp.latest.tar.gz
+wget http://lnmp.liaoyongfu.com/loclnmp.latest.tar.gz
 
 echo '[10]下载完成，进行解压 ..'
 tar -xzf loclnmp.latest.tar.gz -C /tmp/
@@ -47,3 +48,6 @@ chmod +x /tmp/loclnmp/bin/*
 
 echo '开始安装nginx ...'
 /tmp/loclnmp/bin/install-nginx.sh
+
+echo '开始安装php56 ...'
+/tmp/loclnmp/bin/install-php56.sh
