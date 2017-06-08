@@ -33,7 +33,7 @@ sleep 2
 setenforce 0
 
 
-wget -q https://lnmp.liaoyongfu.com/loclnmp.latest.tar.gz
+wget -q http://lnmp.liaoyongfu.com/loclnmp.latest.tar.gz
 
 if [ -e /tmp/loclnmp ] ; then 
     rm -rf /tmp/loclnmp
