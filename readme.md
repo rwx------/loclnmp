@@ -14,9 +14,10 @@
 
 ### 安装
 默认安装：
-curl -sk https://raw.githubusercontent.com/rwx------/loclnmp/master/lnmp-init.sh | sh 
+```
+curl -sk https://raw.githubusercontent.com/rwx------/loclnmp/master/lnmp-init.sh | sh   
 #curl -sk https://raw.githubusercontent.com/rwx------/loclnmp/master/lnmp-init.sh | sh -s " -N -M -P "
-
+```
 
 ### todo-list
 - loc-lnmp命令
