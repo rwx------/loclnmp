@@ -20,17 +20,17 @@ echo "LOC-lnmp: 正在安装依赖包... "
 yum install -y wget epel-release
 
 ## 关闭selinux
-sed -i 's/SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config
 echo "[7]关闭selinux"
+Selinux=$(getenforce)
+if [ "x$Selinux" != "xDisabled" ] ; then
+    setenforce 0
+fi
+sed -i 's/SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config
 
 ## 修改 ulimit 配置
 echo "* soft nofile 65535" >> /etc/security/limits.conf
 echo "* hard nofile 65536" >> /etc/security/limits.conf
 echo "[8]调整文件描述符数量"
-
-sleep 2
-
-setenforce 0
 
 if [ -e /tmp/loclnmp ] ; then
     rm -rf /tmp/loclnmp

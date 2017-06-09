@@ -58,7 +58,7 @@ cd $locSrc/${pkg_name}-${pkg_version}
 --enable-opcache \
 --enable-intl  >${locLogs}/${pkg_name}-${pkg_version}-configure.log  2>${locLogs}/${pkg_name}-${pkg_version}-configure.err
 
-make -j 2 >${locLogs}/${pkg_name}-${pkg_version}-make.log  2>${locLogs}/${pkg_name}-${pkg_version}-make.err
+make >${locLogs}/${pkg_name}-${pkg_version}-make.log  2>${locLogs}/${pkg_name}-${pkg_version}-make.err
 make install >${locLogs}/${pkg_name}-${pkg_version}-install.log  2>${locLogs}/${pkg_name}-${pkg_version}-install.err
 
 # 配置

@@ -18,7 +18,7 @@ fi
 echo 'loc-lnmp: 编译安装'
 cd $locSrc/${pkg_name}-${ngx_version}
 ./configure  --prefix=/usr/local/nginx --with-http_stub_status_module --with-ld-opt=-ljemalloc --with-http_v2_module --with-openssl=$locSrc/openssl-1.0.2k --with-http_ssl_module >$locLogs/nginx-configure.log
-make -j 2 >$locLogs/nginx-make.log
+make >$locLogs/nginx-make.log
 make install
 
 # 配置
